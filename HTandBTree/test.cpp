@@ -1,8 +1,9 @@
 #include "gtest/gtest.h"
-
-TEST(testOne, simpleTest)
+#include "pair.h"
+TEST(Pair, GetKey)
 {
 	int a = 1;
 	int b = 2;
-	EXPECT_NE(a, b);
+	pair<int,int> A(a, b);
+	EXPECT_EQ(A.GetKey(), 1);
 }
