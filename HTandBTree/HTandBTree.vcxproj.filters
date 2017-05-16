@@ -32,5 +32,8 @@
     <ClInclude Include="pair.h">
       <Filter>Header Files\List</Filter>
     </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>Header Files\List</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

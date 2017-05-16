@@ -1,23 +1,13 @@
 #pragma once
-template <typename key, typename value>
-class pair
+template <typename Tkey, typename Tvalue>
+struct pair
 {
-private:
-	key k;
-	value v;
-public:
-	key GetKey()
-	{
-		return k;
-	}
-	value GetValue()
-	{
-		return v;
-	}
+	Tkey key;
+	Tvalue value;
 
-	pair(key _key, value _value)
+	pair(Tkey _key, Tvalue _value)
 	{
-		k = _key;
-		v = _value;
+		key = _key;
+		value = _value;
 	}
 };
