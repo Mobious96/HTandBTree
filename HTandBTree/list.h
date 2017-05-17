@@ -35,6 +35,17 @@ Node<TNodeValue>& Node<TNodeValue>::operator=(Node<TNodeValue> &n)
 	return *this;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 template<typename TNodeValueType>
 struct List
 {

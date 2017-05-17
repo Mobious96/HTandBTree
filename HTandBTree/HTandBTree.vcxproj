@@ -154,6 +154,7 @@
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="avl.h" />
     <ClInclude Include="hashtable.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="pair.h" />

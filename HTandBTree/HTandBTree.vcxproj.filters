@@ -16,11 +16,17 @@
     <Filter Include="Source Files\List">
       <UniqueIdentifier>{9c35a213-016f-4458-aa3a-e2770f78b26e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\List">
-      <UniqueIdentifier>{7cb5e905-2a8c-4286-8d42-2cecfe92f25d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\HashTable">
       <UniqueIdentifier>{a914658b-9e1c-43e0-bed0-18caa5127502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\HashTable\List">
+      <UniqueIdentifier>{7cb5e905-2a8c-4286-8d42-2cecfe92f25d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BTree">
+      <UniqueIdentifier>{c22d9928-55aa-4efd-bba3-45f0c94c2360}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BTree\AVL">
+      <UniqueIdentifier>{71eed7fb-610e-4943-b98f-fc895e5e6bfa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,13 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pair.h">
-      <Filter>Header Files\List</Filter>
+      <Filter>Header Files\HashTable\List</Filter>
     </ClInclude>
     <ClInclude Include="list.h">
-      <Filter>Header Files\List</Filter>
+      <Filter>Header Files\HashTable\List</Filter>
     </ClInclude>
     <ClInclude Include="hashtable.h">
       <Filter>Header Files\HashTable</Filter>
+    </ClInclude>
+    <ClInclude Include="avl.h">
+      <Filter>Header Files\BTree\AVL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

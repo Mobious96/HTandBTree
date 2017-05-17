@@ -2,6 +2,7 @@
 #include "pair.h"
 #include "list.h"
 #include "hashtable.h"
+#include "avl.h"
 TEST(Pair, GetKey)
 {
 	int a = 1;
@@ -147,4 +148,40 @@ TEST(HashTable, GetFirstIfThereAreTwoRec)
 	chain.put(2, 3);
 	chain.put(2, 4);
 	EXPECT_EQ(chain.get(2), 3);
+}
+
+
+
+TEST(AVL, Init)
+{
+	AVL<int,int> tree;
+	EXPECT_NO_THROW(tree);
+}
+TEST(AVL, InitValue)
+{
+	AVL<int, int> tree(1, 3);
+	EXPECT_EQ(tree.root->value, 3);
+}
+TEST(AVL, ConstructorCopy)
+{
+	AVL<int, int> tree(1, 3);
+	AVL<int, int> tree2(tree);
+	EXPECT_EQ(tree.root->value, 3);
+}
+TEST(AVL, Put)
+{
+	AVL<int, int> tree(2,3);
+	EXPECT_NO_THROW(tree.Put(4, 2));
+}
+TEST(AVL, PutRight)
+{
+	AVL<int, int> tree(2, 3);
+	tree.Put(4, 2);
+	EXPECT_EQ(tree.root->right->value, 2);
+}
+TEST(AVL, PutLeftBitch)
+{
+	AVL<int, int> tree(2, 3);
+	tree.Put(1, 2);
+	EXPECT_EQ(tree.root->left->value, 2);
 }
