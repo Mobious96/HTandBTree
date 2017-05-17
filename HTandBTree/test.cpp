@@ -185,3 +185,17 @@ TEST(AVL, PutLeftBitch)
 	tree.Put(1, 2);
 	EXPECT_EQ(tree.root->left->value, 2);
 }
+TEST(AVL, PutLeftAndRight)
+{
+	AVL<int, int> tree(3, 3);
+	tree.Put(2, 2);
+	tree.Put(4, 4);
+	EXPECT_EQ(tree.root->right->value, 4);
+}
+TEST(AVL, PutLeftTwice)
+{
+	AVL<int, int> tree(3, 3);
+	tree.Put(2, 2);
+	tree.Put(1, 4);
+	EXPECT_EQ(tree.root->left->left->value, 4);
+}

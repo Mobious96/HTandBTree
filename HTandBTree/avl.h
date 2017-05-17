@@ -110,26 +110,30 @@ void AVL<Tkey, Tvalue>::PutStart(Tkey key, Tvalue value, BNode<Tkey,Tvalue>* nod
 	{
 		if (node->left != NULL)
 		{
-			PutStart(key, value, node);
+			PutStart(key, value, node->left);
 		}
 		else
 		{
 			node->left = new BNode<Tkey, Tvalue>;
 			node->left->key = key;
 			node->left->value = value;
+			node->left->left = NULL;
+			node->left->right = NULL;
 		}
 	}
 	else
 	{
 		if (node->right != NULL)
 		{
-			PutStart(key, value, node);
+			PutStart(key, value, node->right);
 		}
 		else
 		{
 			node->right = new BNode<Tkey, Tvalue>;
 			node->right->key = key;
 			node->right->value = value;
+			node->right->left = NULL;
+			node->right->right = NULL;
 		}
 	}
 }
