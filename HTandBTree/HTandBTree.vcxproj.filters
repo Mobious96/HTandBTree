@@ -19,6 +19,9 @@
     <Filter Include="Header Files\List">
       <UniqueIdentifier>{7cb5e905-2a8c-4286-8d42-2cecfe92f25d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\HashTable">
+      <UniqueIdentifier>{a914658b-9e1c-43e0-bed0-18caa5127502}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -37,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="list.h">
       <Filter>Header Files\List</Filter>
+    </ClInclude>
+    <ClInclude Include="hashtable.h">
+      <Filter>Header Files\HashTable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

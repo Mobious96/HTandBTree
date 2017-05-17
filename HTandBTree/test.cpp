@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "pair.h"
 #include "list.h"
+#include "hashtable.h"
 TEST(Pair, GetKey)
 {
 	int a = 1;
@@ -76,4 +77,42 @@ TEST(List, WorkWithPairs)
 	TPair<int, int> a(1, 2);
 	List<TPair<int, int> > list(a);
 	EXPECT_EQ(list.head->value.value, 2);
+}
+TEST(List, RemoveByValueOnceMiddle)
+{
+	List<int> list;
+	list.Add(1);
+	list.Add(3);
+	list.Add(4);
+	EXPECT_NO_THROW(list.RemoveByValueOnce(3));
+}
+TEST(List, RemoveByValueOnceFirst)
+{
+	List<int> list;
+	list.Add(1);
+	list.Add(3);
+	list.Add(4);
+	list.RemoveByValueOnce(1);
+	EXPECT_EQ(list.head->value, 3);
+}
+TEST(List, RemoveByValueOnceLast)
+{
+	List<int> list;
+	list.Add(1);
+	list.Add(3);
+	list.Add(4);
+	EXPECT_NO_THROW(list.RemoveByValueOnce(4));
+}
+
+
+
+TEST(HashTable, TableMaxRec)
+{
+	HTSepChain<int, int> chain(10);
+	EXPECT_EQ(chain.MaxRec,10);
+}
+TEST(HashTable, Put)
+{
+	HTSepChain<int, int> chain(10);
+	EXPECT_NO_THROW(chain.put(1, 2));
 }

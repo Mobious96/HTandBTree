@@ -44,7 +44,6 @@ struct List
 	~List();
 	void Add(TNodeValueType _value);
 	void RemoveByValueOnce(TNodeValueType _value);
-	Node<TNodeValueType>* SearchByValue(TNodeValueType _value);
 };
 template <typename TNodeValueType>
 List<TNodeValueType>::List()
@@ -103,26 +102,29 @@ void List<TNodeValueType>::RemoveByValueOnce(TNodeValueType _value)
 			prev = current;
 			current = current->next;
 		};
-		prev->next = current->next;
-		delete current;
-	}
-}
-template<typename TNodeValueType>
-Node<TNodeValueType>* List<TNodeValueType>::SearchByValue(TNodeValueType _value)
-{
-	if (head != NULL)
-	{
-
-		Node<TNodeValueType>* current = head;
-		while (current != NULL)
+		if (prev == NULL)
 		{
-			if (current->value == _value)
-			{
-				return current;
-			}
-			current = current->next;
+			prev = head;
+			head = head->next;
+			delete prev;		
+			return;
 		}
-		return NULL;
+		else
+		{
+			if (current->next == NULL)
+			{
+				prev->next = NULL;
+				delete current;
+				return;
+			}
+			else
+			{
+				prev->next = current->next;
+				delete current;
+				return;
+			}
+		}
+
+		
 	}
 }
-
