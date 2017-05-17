@@ -114,5 +114,37 @@ TEST(HashTable, TableMaxRec)
 TEST(HashTable, Put)
 {
 	HTSepChain<int, int> chain(10);
+	chain.put(2, 3);
 	EXPECT_NO_THROW(chain.put(1, 2));
+}
+
+
+TEST(HashTable, PutCheckValueFirst)
+{
+	HTSepChain<int, int> chain(10);
+	chain.put(1, 2);
+	chain.put(2, 3);
+	EXPECT_EQ(chain.table[1].head->value.value, 2);
+}
+TEST(HashTable, PutCheckValueSecond)
+{
+	HTSepChain<int, int> chain(10);
+	chain.put(1, 2);
+	chain.put(2, 3);
+	EXPECT_EQ(chain.table[2].head->value.value, 3);
+}
+TEST(HashTable, GetFirst)
+{
+	HTSepChain<int, int> chain(10);
+	chain.put(1, 2);
+	chain.put(2, 3);
+	EXPECT_EQ(chain.get(2), 3);
+}
+TEST(HashTable, GetFirstIfThereAreTwoRec)
+{
+	HTSepChain<int, int> chain(10);
+	chain.put(1, 2);
+	chain.put(2, 3);
+	chain.put(2, 4);
+	EXPECT_EQ(chain.get(2), 3);
 }

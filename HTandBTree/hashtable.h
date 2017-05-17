@@ -15,6 +15,7 @@ public:
 	~HTSepChain();
 	int hash(Tkey key);
 	void put(Tkey key, Tvalue value);
+	Tvalue get(Tkey key);
 };
 template<typename Tkey, typename Tvalue>
 HTSepChain<Tkey, Tvalue>::HTSepChain()
@@ -45,4 +46,20 @@ void HTSepChain<Tkey, Tvalue>::put(Tkey key, Tvalue value)
 	int h = hash(key);
 	TPair<Tkey, Tvalue> Pair(key, value);
 	table[h].Add(Pair);
+}
+template<typename Tkey, typename Tvalue>
+Tvalue HTSepChain<Tkey, Tvalue>::get(Tkey _key)
+{
+	int h = hash(_key);
+	Node<TPair<Tkey, Tvalue> >* current = table[h].head;
+
+	while (current != NULL)
+	{
+		if (current->value.key == _key)
+		{
+			return current->value.value;
+		}
+		current = current->next;
+	}
+
 }
