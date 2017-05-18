@@ -64,7 +64,9 @@ AVL<Tkey,Tvalue>::AVL(Tkey key, Tvalue value)
 template<typename Tkey, typename Tvalue>
 AVL<Tkey,Tvalue>::AVL(BNode<Tkey,Tvalue> *_root)
 {
-	root->left = _root;
+	root->left = _root->left;
+
+
 }
 template<typename Tkey, typename Tvalue>
 AVL<Tkey, Tvalue>::~AVL()
