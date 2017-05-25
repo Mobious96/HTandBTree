@@ -2,6 +2,7 @@
 #include "pair.h"
 #include "list.h"
 
+
 template<typename Tkey, typename Tvalue>
 class HTSepChain
 {
@@ -37,7 +38,46 @@ HTSepChain<Tkey, Tvalue>::~HTSepChain()
 template<typename Tkey, typename Tvalue>
 int HTSepChain<Tkey, Tvalue>::hash(Tkey key)
 {
-	return (int)((int)key % MaxRec);
+	if (typeid(key) == typeid(int))
+	{
+		return (int)((int)key % MaxRec);
+	}
+	try
+	{
+		if (typeid(key) == typeid(char*))
+		{
+			throw key;
+		}
+	}
+	catch (char* e_key)
+	{
+		int length = 0;
+		int i = 0;
+		while (e_key[i])
+		{
+			length++;
+			i++;
+		}
+		return length;
+	}
+	try
+	{
+		if (typeid(key) == typeid(double))
+		{
+			throw key;
+		}
+	}
+	catch (double e_key)
+	{
+		if (e_key < 1)
+		{
+			return (int)(e_key * 10);
+		}
+		else
+		{
+			return (int)(fmod(e_key,10));
+		}
+	}
 }
 
 template<typename Tkey, typename Tvalue>

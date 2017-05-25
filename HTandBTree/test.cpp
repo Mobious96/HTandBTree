@@ -147,7 +147,13 @@ TEST(HashTable, Put)
 	chain.put(2, 3);
 	EXPECT_NO_THROW(chain.put(1, 2));
 }
-
+TEST(HashTable, PutChar)
+{
+	HTSepChain<char*, int> charin(10);
+	charin.put("Mercy", 3);
+	charin.put("helloMoto", 4);
+	EXPECT_EQ(charin.get("helloMoto"), 4);
+}
 
 TEST(HashTable, PutCheckValueFirst)
 {
