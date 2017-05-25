@@ -1,2 +1,8 @@
-﻿  HTandBTree.vcxproj -> C:\Users\Mobio\documents\visual studio 2015\Projects\HTandBTree\Debug\HTandBTree.exe
+﻿  Source.cpp
+  Generating Code...
+  Compiling...
+  test.cpp
+  Generating Code...
+c:\users\mobio\documents\visual studio 2015\projects\htandbtree\htandbtree\hashtable.h(65): warning C4715: 'HTSepChain<int,int>::get': not all control paths return a value
+  HTandBTree.vcxproj -> C:\Users\Mobio\documents\visual studio 2015\Projects\HTandBTree\Debug\HTandBTree.exe
   HTandBTree.vcxproj -> C:\Users\Mobio\documents\visual studio 2015\Projects\HTandBTree\Debug\HTandBTree.pdb (Full PDB)

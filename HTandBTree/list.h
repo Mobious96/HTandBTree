@@ -60,7 +60,6 @@ struct List
 	List(List<TNodeValueType>& list);
 	~List();
 	void Add(TNodeValueType _value);
-	void AddNode(Node<TNodeValueType>* node);
 	void RemoveByValueOnce(TNodeValueType _value);
 	Node<TNodeValueType> traverse(Node<TNodeValueType> *node);
 };
@@ -85,7 +84,7 @@ List<TNodeValueType>::List(List<TNodeValueType>& list)
 	Node<TNodeValueType> *current = list.head;
 	while (current != NULL)
 	{
-		AddNode(current);
+		Add(current->value);
 		current = current->next;
 	}
 
@@ -135,26 +134,7 @@ void List<TNodeValueType>::Add(TNodeValueType _value)
 		current->next = nd;
 	}
 }
-template<typename TNodeValueType>
-void List<TNodeValueType>::AddNode(Node<TNodeValueType>* node)
-{
-	Node<TNodeValueType>* nd = new Node<TNodeValueType>;
-	nd->next = NULL;
-	nd->value = node->value;
-	if (head == NULL)
-	{
-		head = nd;
-	}
-	else
-	{
-		Node<TNodeValueType>* current = head;
-		while (current->next != NULL)
-		{
-			current = current->next;
-		}
-		current->next = nd;
-	}
-}
+
 template<typename TNodeValueType>
 void List<TNodeValueType>::RemoveByValueOnce(TNodeValueType _value)
 {
