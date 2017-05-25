@@ -9,6 +9,7 @@ struct Node
 	TNodeValue value; //need to store here TPair<typename Tkey, typename Tvalue>. Got C2512 error: no appropriate default consturctor available.
 	Node();
 	Node(TNodeValue _value);
+	Node(Node<TNodeValue>& node);
 	~Node();
 	Node& operator=(Node &node);
 };
@@ -22,6 +23,14 @@ Node<TNodeValue>::Node(TNodeValue _value)
 	next = NULL;
 	value = _value;
 }
+
+template<typename TNodeValue>
+Node<TNodeValue>::Node(Node<TNodeValue>& node)
+{
+	next = node.next;
+	value = node.value;
+}
+
 template<typename TNodeValue>
 Node<TNodeValue>::~Node()
 {
@@ -42,19 +51,16 @@ Node<TNodeValue>& Node<TNodeValue>::operator=(Node<TNodeValue> &n)
 
 
 
-
-
-
-
 template<typename TNodeValueType>
 struct List
 {
 	Node<TNodeValueType>* head;
 	List();
 	List(TNodeValueType _value);
-	List(List<TNodeValueType> list);
+	List(List<TNodeValueType>& list);
 	~List();
 	void Add(TNodeValueType _value);
+	void AddNode(Node<TNodeValueType>* node);
 	void RemoveByValueOnce(TNodeValueType _value);
 	Node<TNodeValueType> traverse(Node<TNodeValueType> *node);
 };
@@ -71,6 +77,20 @@ List<TNodeValueType>::List(TNodeValueType _value)
 	head->value = _value;
 	head->next = NULL;
 }
+template <typename TNodeValueType>
+List<TNodeValueType>::List(List<TNodeValueType>& list)
+{
+
+	head = NULL;
+	Node<TNodeValueType> *current = list.head;
+	while (current != NULL)
+	{
+		AddNode(current);
+		current = current->next;
+	}
+
+
+}
 
 template <typename TNodeValueType>
 Node<TNodeValueType> List<TNodeValueType>::traverse(Node<TNodeValueType> *node)
@@ -78,16 +98,11 @@ Node<TNodeValueType> List<TNodeValueType>::traverse(Node<TNodeValueType> *node)
 	if (node == NULL) return;
 
 }
-template <typename TNodeValueType>
-List<TNodeValueType>::List(List<TNodeValueType> list)
-{
-	Node<TNodeValueType>* current = list->head;
-	
-}
+
 template <typename TNodeValueType>
 List<TNodeValueType>::~List()
 {
-	if (head)
+	if (head != NULL)
 	{
 		Node<TNodeValueType>* prev = head;
 		while (head->next != NULL)
@@ -106,6 +121,26 @@ void List<TNodeValueType>::Add(TNodeValueType _value)
 	Node<TNodeValueType>* nd = new Node<TNodeValueType>;
 	nd->next = NULL;
 	nd->value = _value;
+	if (head == NULL)
+	{
+		head = nd;
+	}
+	else
+	{
+		Node<TNodeValueType>* current = head;
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		current->next = nd;
+	}
+}
+template<typename TNodeValueType>
+void List<TNodeValueType>::AddNode(Node<TNodeValueType>* node)
+{
+	Node<TNodeValueType>* nd = new Node<TNodeValueType>;
+	nd->next = NULL;
+	nd->value = node->value;
 	if (head == NULL)
 	{
 		head = nd;

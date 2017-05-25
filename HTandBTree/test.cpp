@@ -32,6 +32,27 @@ TEST(Node, OperatorEqual )
 	EXPECT_EQ(node1->value, 2);
 	delete node1;
 }
+TEST(Node, ConstrCopy)
+{
+	Node<int> *node1 = new Node<int>;
+	node1->value = 1;
+	Node<int> *node2 = new Node<int>;
+	node2->value = 2;
+	node2->next = node1;
+	Node<int> *node3(node2);
+	EXPECT_EQ(node3->next->value, 1);
+	delete node1;
+	delete node2;
+}
+TEST(Node, DeleteNInoperator)
+{
+	Node<int> *node1 = new Node<int>;
+	node1->value = 1;
+	Node<int> *node2 = node1;
+	EXPECT_EQ(node1->value, 1);
+	delete node1;
+}
+
 
 TEST(List, ConstructorDefaultInt)
 {
@@ -47,7 +68,6 @@ TEST(List, ConstructorInitPairs)
 	Node<TPair<int, int> > node(a);
 	EXPECT_EQ(node.value.value, 2);
 }
-
 TEST(List, GetValueFromHead)
 {
 	List<int> list(2);
@@ -71,7 +91,7 @@ TEST(List, AddTwice)
 	List<int> list;
 	list.Add(2);
 	list.Add(3);
-	ASSERT_EQ(list.head->value, 2);
+	ASSERT_EQ(list.head->next->value, 3);
 }
 TEST(List, WorkWithPairs)
 {
@@ -103,6 +123,15 @@ TEST(List, RemoveByValueOnceLast)
 	list.Add(3);
 	list.Add(4);
 	EXPECT_NO_THROW(list.RemoveByValueOnce(4));
+}
+TEST(List, ConstrCopyTest)
+{
+	List<int> list1;
+	list1.Add(1);
+	list1.Add(2);
+	List<int> list2(list1);
+	list1.RemoveByValueOnce(2);
+	EXPECT_EQ(list2.head->next->value, 2);
 }
 
 
