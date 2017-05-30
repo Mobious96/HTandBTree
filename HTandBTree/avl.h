@@ -39,6 +39,7 @@ struct AVL
 	AVL();
 	AVL(BNode<Tkey, Tvalue> *_root);
 	AVL(Tkey key, Tvalue);
+	//AVL(AVL<Tkey, Tvalue>& tree);
 	~AVL();
 	int Balance(BNode<Tkey, Tvalue>* node);
 	void FixHeight(BNode<Tkey, Tvalue>* node);
@@ -46,6 +47,8 @@ struct AVL
 	void RotateRight(BNode<Tkey, Tvalue>* node);
 	void Put(Tkey key, Tvalue value);
 	void PutStart(Tkey key, Tvalue value, BNode<Tkey, Tvalue>* node);
+	void traverseDEL(BNode<Tkey, Tvalue>* node);
+	//void traverseCOPY(BNode<Tkey, Tvalue>* node, BNode<Tkey, Tvalue>* thisnode);
 };
 template<typename Tkey, typename Tvalue>
 AVL<Tkey, Tvalue>::AVL()
@@ -65,20 +68,54 @@ template<typename Tkey, typename Tvalue>
 AVL<Tkey,Tvalue>::AVL(BNode<Tkey,Tvalue> *_root)
 {
 	root->left = _root->left;
-
+	root->right = _root->right;
+	root->value = _root->value;
 
 }
+/*
+template<typename Tkey, typename Tvalue>
+AVL<Tkey, Tvalue>::AVL(AVL<Tkey, Tvalue>& tree)
+{
+	traverseCOPY(tree->root, root);
+}
+*/
 template<typename Tkey, typename Tvalue>
 AVL<Tkey, Tvalue>::~AVL()
 {
+	/*
 	if (root)
 	{
-		if (root->left != NULL)
-			delete root->left;
-		if (root->right != NULL)
-			delete root->right;
+		traverseDEL(root);
 	}
+	*/
 }
+template<typename Tkey, typename Tvalue>
+void AVL<Tkey, Tvalue>::traverseDEL(BNode<Tkey, Tvalue>* node)
+{
+	if (node == NULL)
+	{
+		return;
+	}
+	traverseDEL(node->left);
+	traverseDEL(node->right);
+	delete node;
+}
+/*
+template<typename Tkey, typename Tvalue>
+void AVL<Tkey, Tvalue>::traverseCOPY(BNode<Tkey, Tvalue>* node, BNode<Tkey, Tvalue>* thisnode)
+{
+		if (node)
+		{
+			BNode<Tkey, Tvalue> thisnode = new BNode<Tkey, Tvalue>;
+			thisnode->value = node->value;
+			//Надо с собой нести прев, чтобы указывать на уже новосозданный объект, у которого память выделена.
+			//Иначе пизда.
+		}
+
+	traverseCOPY(node->left, thisnode->left);
+	traverseCOPY(node->right, thisnode->right);
+}
+*/
 template<typename Tkey, typename Tvalue>
 int AVL<Tkey, Tvalue>::Balance(BNode<Tkey, Tvalue>* node)
 {

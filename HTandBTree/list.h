@@ -88,7 +88,6 @@ List<TNodeValueType>::List(List<TNodeValueType>& list)
 		current = current->next;
 	}
 
-
 }
 
 template <typename TNodeValueType>

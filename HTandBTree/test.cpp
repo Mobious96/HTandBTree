@@ -86,12 +86,13 @@ TEST(List, ExpectNoThrowDestructor)
 	list.Add(3);
 	EXPECT_NO_THROW(list.Add(4));
 }
-TEST(List, AddTwice)
+TEST(List, AddTriple)
 {
 	List<int> list;
 	list.Add(2);
 	list.Add(3);
-	ASSERT_EQ(list.head->next->value, 3);
+	list.Add(4);
+	ASSERT_EQ(list.head->next->next->value, 4);
 }
 TEST(List, WorkWithPairs)
 {
@@ -154,7 +155,6 @@ TEST(HashTable, PutChar)
 	charin.put("helloMoto", 4);
 	EXPECT_EQ(charin.get("helloMoto"), 4);
 }
-
 TEST(HashTable, PutCheckValueFirst)
 {
 	HTSepChain<int, int> chain(10);
@@ -201,7 +201,7 @@ TEST(AVL, ConstructorCopy)
 {
 	AVL<int, int> tree(1, 3);
 	AVL<int, int> tree2(tree);
-	EXPECT_EQ(tree.root->value, 3);
+	EXPECT_EQ(tree2.root->value, 3);
 }
 TEST(AVL, Put)
 {

@@ -2,7 +2,8 @@
 #include "pair.h"
 #include "list.h"
 
-
+//В качестве key используем первую букву
+//В качестве value = само слово
 template<typename Tkey, typename Tvalue>
 class HTSepChain
 {
@@ -22,6 +23,7 @@ template<typename Tkey, typename Tvalue>
 HTSepChain<Tkey, Tvalue>::HTSepChain()
 {
 	table = new List<TPair<Tkey, Tvalue> >;
+	table->head = NULL;
 }
 template<typename Tkey, typename Tvalue>
 HTSepChain<Tkey, Tvalue>::HTSepChain(int _MaxRec)
@@ -38,10 +40,12 @@ HTSepChain<Tkey, Tvalue>::~HTSepChain()
 template<typename Tkey, typename Tvalue>
 int HTSepChain<Tkey, Tvalue>::hash(Tkey key)
 {
-	if (typeid(key) == typeid(int))
+	//if key is int
+	if ((typeid(key) == typeid(int))||(typeid(key) == typeid(char)))
 	{
 		return (int)((int)key % MaxRec);
 	}
+	//If key is char*
 	try
 	{
 		if (typeid(key) == typeid(char*))
@@ -60,6 +64,7 @@ int HTSepChain<Tkey, Tvalue>::hash(Tkey key)
 		}
 		return length;
 	}
+	//if key is double
 	try
 	{
 		if (typeid(key) == typeid(double))
