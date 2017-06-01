@@ -3,6 +3,7 @@
 #include "list.h"
 #include "hashtable.h"
 #include "avl.h"
+#include "BSTree.h"
 TEST(Pair, GetKey)
 {
 	int a = 1;
@@ -185,52 +186,67 @@ TEST(HashTable, GetFirstIfThereAreTwoRec)
 	EXPECT_EQ(chain.get(2), 3);
 }
 
-
-
-TEST(AVL, Init)
+TEST(BST, Init)
 {
-	AVL<int,int> tree;
+	BST<int, int> tree;
 	EXPECT_NO_THROW(tree);
 }
-TEST(AVL, InitValue)
+TEST(BST, InitValue)
 {
-	AVL<int, int> tree(1, 3);
+	BST<int, int> tree(1, 3);
 	EXPECT_EQ(tree.root->value, 3);
 }
-TEST(AVL, ConstructorCopy)
+TEST(BST, ConstructorCopy)
 {
-	AVL<int, int> tree(1, 3);
-	AVL<int, int> tree2(tree);
+	BST<int, int> tree(1, 3);
+	BST<int, int> tree2(tree);
 	EXPECT_EQ(tree2.root->value, 3);
 }
-TEST(AVL, Put)
+TEST(BST, Put)
 {
-	AVL<int, int> tree(2,3);
+	BST<int, int> tree(2, 3);
 	EXPECT_NO_THROW(tree.Put(4, 2));
 }
-TEST(AVL, PutRight)
+TEST(BST, PutRight)
 {
-	AVL<int, int> tree(2, 3);
+	BST<int, int> tree(2, 3);
 	tree.Put(4, 2);
 	EXPECT_EQ(tree.root->right->value, 2);
 }
-TEST(AVL, PutLeftBitch)
+TEST(BST, PutLeftBitch)
 {
-	AVL<int, int> tree(2, 3);
+	BST<int, int> tree(2, 3);
 	tree.Put(1, 2);
 	EXPECT_EQ(tree.root->left->value, 2);
 }
-TEST(AVL, PutLeftAndRight)
+TEST(BST, PutLeftAndRight)
 {
-	AVL<int, int> tree(3, 3);
+	BST<int, int> tree(3, 3);
 	tree.Put(2, 2);
 	tree.Put(4, 4);
 	EXPECT_EQ(tree.root->right->value, 4);
 }
-TEST(AVL, PutLeftTwice)
+TEST(BST, PutLeftTwice)
 {
-	AVL<int, int> tree(3, 3);
+	BST<int, int> tree(3, 3);
 	tree.Put(2, 2);
 	tree.Put(1, 4);
 	EXPECT_EQ(tree.root->left->left->value, 4);
 }
+TEST(BST, IntAndPut)
+{
+	BST<int, int> tree;
+	tree.Put(1, 1);
+	EXPECT_EQ(tree.root->value, 1);
+}
+
+//TEST(BST, Init)
+//{
+//	BST<int,int> tree;
+//	EXPECT_NO_THROW(tree);
+//}
+//TEST(BST, ConstrInit)
+//{
+//	BST<int, int> tree(5,5);
+//	EXPECT_EQ(tree.root->key, 5);
+//}

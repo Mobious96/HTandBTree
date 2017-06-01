@@ -1,5 +1,4 @@
 ﻿  Source.cpp
-c:\users\mobio\documents\visual studio 2015\projects\htandbtree\htandbtree\hashtable.h(86): warning C4715: 'HTSepChain<char,char *>::hash': not all control paths return a value
-c:\users\mobio\documents\visual studio 2015\projects\htandbtree\htandbtree\hashtable.h(110): warning C4715: 'HTSepChain<char,char *>::get': not all control paths return a value
+c:\users\mobio\documents\visual studio 2015\projects\htandbtree\htandbtree\hashtable.h(86): warning C4715: 'HTSepChain<char *,char *>::hash': not all control paths return a value
   HTandBTree.vcxproj -> C:\Users\Mobio\documents\visual studio 2015\Projects\HTandBTree\Debug\HTandBTree.exe
   HTandBTree.vcxproj -> C:\Users\Mobio\documents\visual studio 2015\Projects\HTandBTree\Debug\HTandBTree.pdb (Full PDB)

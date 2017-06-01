@@ -53,5 +53,8 @@
     <ClInclude Include="avl.h">
       <Filter>Header Files\BTree\AVL</Filter>
     </ClInclude>
+    <ClInclude Include="BSTree.h">
+      <Filter>Header Files\BTree\AVL</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

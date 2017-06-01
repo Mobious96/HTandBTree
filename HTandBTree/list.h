@@ -37,7 +37,7 @@ Node<TNodeValue>::~Node()
 }
 template<typename TNodeValue>
 Node<TNodeValue>& Node<TNodeValue>::operator=(Node<TNodeValue> &n)
-{
+{ 
 	next = n.next;
 	value = n.value;
 	delete n;
